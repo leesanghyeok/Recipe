@@ -1,366 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    tools:context="com.hey.blueberry.recipe.MainActivity">
 
-    <RelativeLayout
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mainToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.hey.blueberry.recipe.MainActivity">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/mainToolbar"
-            android:layout_width="match_parent"
+        <android.support.v7.widget.SearchView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/search_view"
+            style="@style/SearchViewStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark">
+            android:layout_centerVertical="true"
+            android:layout_gravity="end"/>
 
-            <android.support.v7.widget.SearchView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/search_view"
-                style="@style/SearchViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="end"/>
+    </android.support.v7.widget.Toolbar>
 
-        </android.support.v7.widget.Toolbar>
+    <TextView
+        android:id="@+id/recommend"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="5dp"
+        android:layout_below="@id/mainToolbar"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:text="비오는 날, 따끈한 '파전' 어때요?"/>
+
+    <LinearLayout
+        android:id="@+id/addIngred"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recommend"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/recommend"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_below="@id/mainToolbar"
+            android:layout_height="3dp"
+            android:background="#BFBFBF">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="비오는 날, 따끈한 '파전' 어때요?"
-            android:textSize="18dp"/>
+            android:text="고기"/>
 
-        <LinearLayout
-            android:id="@+id/addIngred"
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recommend"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#BFBFBF">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="고기"/>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ToggleButton
-                        android:id="@+id/eggBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="달걀"
-                        android:textOn="달걀"/>
-
-                    <ToggleButton
-                        android:id="@+id/chickenBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="닭고기"
-                        android:textOn="닭고기"/>
-
-                    <ToggleButton
-                        android:id="@+id/porkBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="돼지고기"
-                        android:textOn="돼지고기"/>
-
-                    <ToggleButton
-                        android:id="@+id/beefBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="소고기"
-                        android:textOn="소고기"/>
-
-                    <ToggleButton
-                        android:id="@+id/duckBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="오리고기"
-                        android:textOn="오리고기"/>
-
-                    <ToggleButton
-                        android:id="@+id/lambBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="양고기"
-                        android:textOn="양고기"/>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="해산물"/>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ToggleButton
-                        android:id="@+id/fishBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="생선"
-                        android:textOn="생선"/>
-
-                    <ToggleButton
-                        android:id="@+id/squidBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="오징어"
-                        android:textOn="오징어"/>
-
-                    <ToggleButton
-                        android:id="@+id/shrimpBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="새우"
-                        android:textOn="새우"/>
-
-                    <ToggleButton
-                        android:id="@+id/crabBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="게"
-                        android:textOn="게"/>
-
-                    <ToggleButton
-                        android:id="@+id/shellBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="조개"
-                        android:textOn="조개"/>
-
-                    <ToggleButton
-                        android:id="@+id/seaweedBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="미역"
-                        android:textOn="미역"/>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="채소"/>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ToggleButton
-                        android:id="@+id/onionBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="양파"
-                        android:textOn="양파"/>
-
-                    <ToggleButton
-                        android:id="@+id/welshonBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="파"
-                        android:textOn="파"/>
-
-                    <ToggleButton
-                        android:id="@+id/garlicBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="마늘"
-                        android:textOn="마늘"/>
-
-                    <ToggleButton
-                        android:id="@+id/pimentBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="피망"
-                        android:textOn="피망"/>
-
-                    <ToggleButton
-                        android:id="@+id/paprikaBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="파프리카"
-                        android:textOn="파프리카"/>
-
-                    <ToggleButton
-                        android:id="@+id/cucumberBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="오이"
-                        android:textOn="오이"/>
-
-                    <ToggleButton
-                        android:id="@+id/carrotBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="당근"
-                        android:textOn="당근"/>
-
-                    <ToggleButton
-                        android:id="@+id/potatoBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="감자"
-                        android:textOn="감자"/>
-
-                    <ToggleButton
-                        android:id="@+id/sweetpotBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="고구마"
-                        android:textOn="고구마"/>
-
-                    <ToggleButton
-                        android:id="@+id/eggplantBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="가지"
-                        android:textOn="가지"/>
-
-                    <ToggleButton
-                        android:id="@+id/pumpkinBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textOff="호박"
-                        android:textOn="호박"/>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/addMore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addIngred"
-            android:orientation="vertical">
+            android:layout_marginLeft="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"
-                    android:hint="추가 재료 입력하세요"/>
-
-                <Button
-                    android:id="@+id/addBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="추가"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/chooseLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addMore"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#BFBFBF"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="선택한 재료"/>
-
-            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/addedBtnLayout"
-                    android:layout_width="match_parent"
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp">
+                    android:text="달걀"/>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닭고기"/>
 
-                </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="돼지고기"/>
 
-            </HorizontalScrollView>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소고기"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오리고기"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양고기"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="해산물"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="생선"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오징어"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="새우"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="게"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="조개"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미역"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="채소"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양파"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="파"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="마늘"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="피망"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="파프리카"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오이"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="당근"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="감자"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고구마"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가지"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="호박"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addIngred"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="추가 재료 입력"/>
 
             <Button
-                android:id="@+id/searchBtn"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="레시피 찾기">
-
-            </Button>
+                android:text="추가"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/chooseLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addMore"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#BFBFBF"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="선택한 재료"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="달걀"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닭고기"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양파"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="레시피 찾기"
+            android:layout_gravity="center">
+
+        </Button>
+
+    </LinearLayout>
+
+</RelativeLayout>
