@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Recipe</string>
-
-    <string name="search_hint">입력하세요</string>
 </resources>
