@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,18 +18,17 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener
-{
-    String [] moreNameArray = new String[]{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    String[] moreNameArray = new String[]{
             "가재", "고사리", "곤약", "도라지", "도루묵", "도토리묵", "들깨", "어묵", "청포묵", "토란", "톳"
     };
-    ArrayList<ToggleButton> nameBtnArray = new ArrayList<>();
-    ArrayList<Button> addedBtnArray = new ArrayList<>();
+    List<ToggleButton> nameBtnArray = new ArrayList<>();
+    List<Button> addedBtnArray = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -44,20 +44,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchAutoComplete.setHintTextColor(Color.GRAY);
         searchAutoComplete.setTextColor(Color.WHITE);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-        {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
-            public boolean onQueryTextSubmit(String s)
-            {
+            public boolean onQueryTextSubmit(String s) {
                 //검색 시 동작할 코드
                 Toast.makeText(MainActivity.this, "검색", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s)
-            {
+            public boolean onQueryTextChange(String s) {
                 //입력 중 동작할 코드
                 return false;
             }
@@ -65,33 +62,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //어댑터를 만들고 자동완성 스트링 리스트와 연결해줌
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
-        AutoCompleteTextView autoEdit = (AutoCompleteTextView)findViewById(R.id.autoEdit);
+        AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
         autoEdit.setAdapter(adWord);
 
         //식재료 버튼 리스너 및 배열 추가
-        ToggleButton eggBtn = (ToggleButton) findViewById(R.id.eggBtn);
-        ToggleButton chickenBtn = (ToggleButton)findViewById(R.id.chickenBtn);
-        ToggleButton porkBtn = (ToggleButton) findViewById(R.id.porkBtn);
-        ToggleButton beefBtn = (ToggleButton) findViewById(R.id.beefBtn);
-        ToggleButton duckBtn = (ToggleButton) findViewById(R.id.duckBtn);
-        ToggleButton lambBtn = (ToggleButton) findViewById(R.id.lambBtn);
-        ToggleButton fishBtn = (ToggleButton) findViewById(R.id.fishBtn);
-        ToggleButton squidBtn = (ToggleButton) findViewById(R.id.squidBtn);
-        ToggleButton shrimpBtn = (ToggleButton) findViewById(R.id.shrimpBtn);
-        ToggleButton crabBtn = (ToggleButton) findViewById(R.id.crabBtn);
-        ToggleButton shellBtn = (ToggleButton) findViewById(R.id.shellBtn);
-        ToggleButton seaweedBtn = (ToggleButton) findViewById(R.id.seaweedBtn);
-        ToggleButton onionBtn = (ToggleButton) findViewById(R.id.onionBtn);
-        ToggleButton welshonBtn = (ToggleButton) findViewById(R.id.welshonBtn);
-        ToggleButton garlicBtn = (ToggleButton) findViewById(R.id.garlicBtn);
-        ToggleButton pimentBtn = (ToggleButton) findViewById(R.id.pimentBtn);
-        ToggleButton paprikaBtn = (ToggleButton) findViewById(R.id.paprikaBtn);
-        ToggleButton cucumberBtn = (ToggleButton) findViewById(R.id.cucumberBtn);
-        ToggleButton carrotBtn = (ToggleButton) findViewById(R.id.carrotBtn);
-        ToggleButton potatoBtn = (ToggleButton) findViewById(R.id.potatoBtn);
-        ToggleButton sweetpotBtn = (ToggleButton) findViewById(R.id.sweetpotBtn);
-        ToggleButton eggplantBtn = (ToggleButton) findViewById(R.id.eggplantBtn);
-        ToggleButton pumpkinBtn = (ToggleButton) findViewById(R.id.pumpkinBtn);
+        //
+/*
+        ToggleButton eggBtn = (ToggleButton) findViewById(R.id.nameBtn1);
+        ToggleButton chickenBtn = (ToggleButton) findViewById(R.id.nameBtn2);
+        ToggleButton porkBtn = (ToggleButton) findViewById(R.id.nameBtn3);
+        ToggleButton beefBtn = (ToggleButton) findViewById(R.id.nameBtn4);
+        ToggleButton duckBtn = (ToggleButton) findViewById(R.id.nameBtn5);
+        ToggleButton lambBtn = (ToggleButton) findViewById(R.id.nameBtn6);
+        ToggleButton fishBtn = (ToggleButton) findViewById(R.id.nameBtn7);
+        ToggleButton squidBtn = (ToggleButton) findViewById(R.id.nameBtn8);
+        ToggleButton shrimpBtn = (ToggleButton) findViewById(R.id.nameBtn9);
+        ToggleButton crabBtn = (ToggleButton) findViewById(R.id.nameBtn10);
+        ToggleButton shellBtn = (ToggleButton) findViewById(R.id.nameBtn11);
+        ToggleButton seaweedBtn = (ToggleButton) findViewById(R.id.nameBtn12);
+        ToggleButton onionBtn = (ToggleButton) findViewById(R.id.nameBtn13);
+        ToggleButton welshonBtn = (ToggleButton) findViewById(R.id.nameBtn14);
+        ToggleButton garlicBtn = (ToggleButton) findViewById(R.id.nameBtn15);
+        ToggleButton pimentBtn = (ToggleButton) findViewById(R.id.nameBtn16);
+        ToggleButton paprikaBtn = (ToggleButton) findViewById(R.id.nameBtn17);
+        ToggleButton cucumberBtn = (ToggleButton) findViewById(R.id.nameBtn18);
+        ToggleButton carrotBtn = (ToggleButton) findViewById(R.id.nameBtn19);
+        ToggleButton potatoBtn = (ToggleButton) findViewById(R.id.nameBtn20);
+        ToggleButton sweetpotBtn = (ToggleButton) findViewById(R.id.nameBtn21);
+        ToggleButton eggplantBtn = (ToggleButton) findViewById(R.id.nameBtn22);
+        ToggleButton pumpkinBtn = (ToggleButton) findViewById(R.id.nameBtn23);
 
         eggBtn.setOnClickListener(this);
         chickenBtn.setOnClickListener(this);
@@ -141,23 +140,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nameBtnArray.add(eggplantBtn);
         nameBtnArray.add(pumpkinBtn);
 
+        */
+        int TgBtnID = getResources().getIdentifier("nameBtn1","id","com.hey.blueberry.recipe");
+        for(int i = 0; i < 23; i++) {
+            nameBtnArray.add((ToggleButton) findViewById(TgBtnID));
+            nameBtnArray.get(i).setOnClickListener(this);
+            TgBtnID++;
+            Log.d("버튼명",nameBtnArray.get(i).getText().toString());
+        }
+
+
         //추가 버튼
         Button addBtn = (Button) findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(this);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
+                addNewBtn(autoEdit.getText().toString());
+                autoEdit.setText("");
+
+                //키보드 숨기기
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(autoEdit.getWindowToken(), 0);
+            }
+        });
     }
 
     /**
      * 액션바 메뉴 버튼의 각 동작코드를 담은 함수
+     *
      * @param item 클릭된 메뉴아이템
-     * @return
+     * @return 동작 여부
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id)
-        {
-            case android.R.id.home:
-            {
+        switch (id) {
+            case android.R.id.home: {
                 // 즐겨찾기 버튼을 눌렀을 때 적절한 액션을 넣는다.
                 Toast.makeText(this, "즐겨찾기 버튼 누름", Toast.LENGTH_SHORT).show();
                 return true;
@@ -168,73 +187,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 재료 토글버튼 클릭시 이벤트
+     *
      * @param v 클릭된 토글버튼
      */
     @Override
-    public void onClick(View v)
-    {
-        if(v.getId() == R.id.addBtn)
-        {
-            AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
-            addNewBtn(autoEdit.getText().toString());
-            autoEdit.setText("");
-
-            //키보드 숨기기
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(autoEdit.getWindowToken(), 0);
+    public void onClick(View v) {  //
+        ToggleButton tb = (ToggleButton) v;
+        if (tb.isChecked()) {
+            addNewBtn(((ToggleButton) v).getText().toString());
         }
-        else
-        {
-            ToggleButton tb = (ToggleButton) v;
-            LinearLayout layout = (LinearLayout) findViewById(R.id.addedBtnLayout);
-            if (tb.isChecked())
-            {
-                addNewBtn(((ToggleButton) v).getText().toString());
-            }
-            else
-            {
-                removeBtn(((ToggleButton) v).getText().toString());
-            }
+        else {
+            removeBtn(((ToggleButton) v).getText().toString());
         }
     }
 
     /**
      * 해당 파라미터의 값을 text로 가진 버튼 생성하는 함수
+     *
      * @param name 생성할 버튼의 text 값
      */
-    void addNewBtn(String name)
-    {
-        //기존에 추가된 재료인지 확인
-        boolean isNew = true;
-        for (int i = 0; i < addedBtnArray.size(); i++)
-            if (name.compareTo(addedBtnArray.get(i).getText().toString()) == 0)
-            {
-                isNew = false;
-                Toast.makeText(this, "이미 추가된 재료입니다.", Toast.LENGTH_SHORT).show();
-                break;
-            }
 
+    void addNewBtn(String name) {
         //추가되지 않은 새로운 음식재료일 경우 버튼 생성 및 추가
-        if (isNew)
-        {
+        if (isNew(name)) {
             LinearLayout layout = (LinearLayout) findViewById(R.id.addedBtnLayout);
             Button newBtn = new Button(this);
             newBtn.setText(name);
-            newBtn.setOnClickListener(new View.OnClickListener()
-            {
+            newBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    removeBtn(((Button)v).getText().toString());
+                public void onClick(View v) {
+                    removeBtn(((Button) v).getText().toString());
                 }
             });
             addedBtnArray.add(newBtn);
-            layout.addView(addedBtnArray.get(addedBtnArray.size() - 1));
+            layout.addView(newBtn);
 
             //음식재료명 버튼이 off 상태일 경우 -> on
-            for(int i = 0; i < nameBtnArray.size(); i++)
-                if(name.compareTo(nameBtnArray.get(i).getText().toString()) == 0)
-                {
+            for (int i = 0; i < nameBtnArray.size(); i++)
+                if (name.equals(nameBtnArray.get(i).getText().toString())) {
                     nameBtnArray.get(i).setChecked(true);
                     break;
                 }
@@ -243,17 +233,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 선택한 음식재료 버튼을 삭제하는 함수
+     *
      * @param name 삭제하기 위해 선택한 음식재료명
      */
-    void removeBtn(String name)
-    {
+    void removeBtn(String name) {
         //해당 이름의 음식 재료 선택 해제
         Toast.makeText(MainActivity.this, name + " 삭제", Toast.LENGTH_SHORT).show();
         LinearLayout layout = (LinearLayout) findViewById(R.id.addedBtnLayout);
-        for (int i = 0; i < addedBtnArray.size(); i++)
-        {
-            if (name.compareTo(addedBtnArray.get(i).getText().toString()) == 0)
-            {
+        for (int i = 0; i < addedBtnArray.size(); i++) {
+            if (name.equals(addedBtnArray.get(i).getText().toString())) {
                 layout.removeView(addedBtnArray.get(i));
                 addedBtnArray.remove(i);
                 break;
@@ -261,11 +249,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //음식재료명 버튼이 on 상태일 경우 -> off
-        for(int i = 0; i < nameBtnArray.size(); i++)
-            if(name.compareTo(nameBtnArray.get(i).getText().toString()) == 0)
-            {
+        for (int i = 0; i < nameBtnArray.size(); i++)
+            if (name.equals(nameBtnArray.get(i).getText().toString())) {
                 nameBtnArray.get(i).setChecked(false);
                 break;
             }
+    }
+
+
+    /**
+     * 해당 이름의 재료가 이미 선택되어있지 않은 새로운 재료인지 확인하는 메소드
+     *
+     * @param name 선택 여부 확인할 이름
+     * @return 새로 선택된 것인지에 대한 여부
+     */
+    boolean isNew(String name) {
+        for (int i = 0; i < addedBtnArray.size(); i++)
+            if (name.equals(addedBtnArray.get(i).getText().toString())) {
+                Toast.makeText(this, "이미 추가된 재료입니다.", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        return true;
     }
 }

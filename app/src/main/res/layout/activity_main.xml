@@ -71,42 +71,42 @@
                     android:layout_height="wrap_content">
 
                     <ToggleButton
-                        android:id="@+id/eggBtn"
+                        android:id="@+id/nameBtn1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="달걀"
                         android:textOn="달걀"/>
 
                     <ToggleButton
-                        android:id="@+id/chickenBtn"
+                        android:id="@+id/nameBtn2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="닭고기"
                         android:textOn="닭고기"/>
 
                     <ToggleButton
-                        android:id="@+id/porkBtn"
+                        android:id="@+id/nameBtn3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="돼지고기"
                         android:textOn="돼지고기"/>
 
                     <ToggleButton
-                        android:id="@+id/beefBtn"
+                        android:id="@+id/nameBtn4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="소고기"
                         android:textOn="소고기"/>
 
                     <ToggleButton
-                        android:id="@+id/duckBtn"
+                        android:id="@+id/nameBtn5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="오리고기"
                         android:textOn="오리고기"/>
 
                     <ToggleButton
-                        android:id="@+id/lambBtn"
+                        android:id="@+id/nameBtn6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="양고기"
@@ -132,42 +132,42 @@
                     android:layout_height="wrap_content">
 
                     <ToggleButton
-                        android:id="@+id/fishBtn"
+                        android:id="@+id/nameBtn7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="생선"
                         android:textOn="생선"/>
 
                     <ToggleButton
-                        android:id="@+id/squidBtn"
+                        android:id="@+id/nameBtn8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="오징어"
                         android:textOn="오징어"/>
 
                     <ToggleButton
-                        android:id="@+id/shrimpBtn"
+                        android:id="@+id/nameBtn9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="새우"
                         android:textOn="새우"/>
 
                     <ToggleButton
-                        android:id="@+id/crabBtn"
+                        android:id="@+id/nameBtn10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="게"
                         android:textOn="게"/>
 
                     <ToggleButton
-                        android:id="@+id/shellBtn"
+                        android:id="@+id/nameBtn11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="조개"
                         android:textOn="조개"/>
 
                     <ToggleButton
-                        android:id="@+id/seaweedBtn"
+                        android:id="@+id/nameBtn12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="미역"
@@ -194,77 +194,77 @@
                     android:layout_height="wrap_content">
 
                     <ToggleButton
-                        android:id="@+id/onionBtn"
+                        android:id="@+id/nameBtn13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="양파"
                         android:textOn="양파"/>
 
                     <ToggleButton
-                        android:id="@+id/welshonBtn"
+                        android:id="@+id/nameBtn14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="파"
                         android:textOn="파"/>
 
                     <ToggleButton
-                        android:id="@+id/garlicBtn"
+                        android:id="@+id/nameBtn15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="마늘"
                         android:textOn="마늘"/>
 
                     <ToggleButton
-                        android:id="@+id/pimentBtn"
+                        android:id="@+id/nameBtn16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="피망"
                         android:textOn="피망"/>
 
                     <ToggleButton
-                        android:id="@+id/paprikaBtn"
+                        android:id="@+id/nameBtn17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="파프리카"
                         android:textOn="파프리카"/>
 
                     <ToggleButton
-                        android:id="@+id/cucumberBtn"
+                        android:id="@+id/nameBtn18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="오이"
                         android:textOn="오이"/>
 
                     <ToggleButton
-                        android:id="@+id/carrotBtn"
+                        android:id="@+id/nameBtn19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="당근"
                         android:textOn="당근"/>
 
                     <ToggleButton
-                        android:id="@+id/potatoBtn"
+                        android:id="@+id/nameBtn20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="감자"
                         android:textOn="감자"/>
 
                     <ToggleButton
-                        android:id="@+id/sweetpotBtn"
+                        android:id="@+id/nameBtn21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="고구마"
                         android:textOn="고구마"/>
 
                     <ToggleButton
-                        android:id="@+id/eggplantBtn"
+                        android:id="@+id/nameBtn22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="가지"
                         android:textOn="가지"/>
 
                     <ToggleButton
-                        android:id="@+id/pumpkinBtn"
+                        android:id="@+id/nameBtn23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textOff="호박"
