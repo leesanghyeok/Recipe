@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -66,91 +65,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoEdit.setAdapter(adWord);
 
         //식재료 버튼 리스너 및 배열 추가
-        //
-/*
-        ToggleButton eggBtn = (ToggleButton) findViewById(R.id.nameBtn1);
-        ToggleButton chickenBtn = (ToggleButton) findViewById(R.id.nameBtn2);
-        ToggleButton porkBtn = (ToggleButton) findViewById(R.id.nameBtn3);
-        ToggleButton beefBtn = (ToggleButton) findViewById(R.id.nameBtn4);
-        ToggleButton duckBtn = (ToggleButton) findViewById(R.id.nameBtn5);
-        ToggleButton lambBtn = (ToggleButton) findViewById(R.id.nameBtn6);
-        ToggleButton fishBtn = (ToggleButton) findViewById(R.id.nameBtn7);
-        ToggleButton squidBtn = (ToggleButton) findViewById(R.id.nameBtn8);
-        ToggleButton shrimpBtn = (ToggleButton) findViewById(R.id.nameBtn9);
-        ToggleButton crabBtn = (ToggleButton) findViewById(R.id.nameBtn10);
-        ToggleButton shellBtn = (ToggleButton) findViewById(R.id.nameBtn11);
-        ToggleButton seaweedBtn = (ToggleButton) findViewById(R.id.nameBtn12);
-        ToggleButton onionBtn = (ToggleButton) findViewById(R.id.nameBtn13);
-        ToggleButton welshonBtn = (ToggleButton) findViewById(R.id.nameBtn14);
-        ToggleButton garlicBtn = (ToggleButton) findViewById(R.id.nameBtn15);
-        ToggleButton pimentBtn = (ToggleButton) findViewById(R.id.nameBtn16);
-        ToggleButton paprikaBtn = (ToggleButton) findViewById(R.id.nameBtn17);
-        ToggleButton cucumberBtn = (ToggleButton) findViewById(R.id.nameBtn18);
-        ToggleButton carrotBtn = (ToggleButton) findViewById(R.id.nameBtn19);
-        ToggleButton potatoBtn = (ToggleButton) findViewById(R.id.nameBtn20);
-        ToggleButton sweetpotBtn = (ToggleButton) findViewById(R.id.nameBtn21);
-        ToggleButton eggplantBtn = (ToggleButton) findViewById(R.id.nameBtn22);
-        ToggleButton pumpkinBtn = (ToggleButton) findViewById(R.id.nameBtn23);
-
-        eggBtn.setOnClickListener(this);
-        chickenBtn.setOnClickListener(this);
-        porkBtn.setOnClickListener(this);
-        beefBtn.setOnClickListener(this);
-        duckBtn.setOnClickListener(this);
-        lambBtn.setOnClickListener(this);
-        fishBtn.setOnClickListener(this);
-        squidBtn.setOnClickListener(this);
-        shrimpBtn.setOnClickListener(this);
-        crabBtn.setOnClickListener(this);
-        shellBtn.setOnClickListener(this);
-        seaweedBtn.setOnClickListener(this);
-        onionBtn.setOnClickListener(this);
-        welshonBtn.setOnClickListener(this);
-        garlicBtn.setOnClickListener(this);
-        pimentBtn.setOnClickListener(this);
-        paprikaBtn.setOnClickListener(this);
-        cucumberBtn.setOnClickListener(this);
-        carrotBtn.setOnClickListener(this);
-        potatoBtn.setOnClickListener(this);
-        sweetpotBtn.setOnClickListener(this);
-        eggplantBtn.setOnClickListener(this);
-        pumpkinBtn.setOnClickListener(this);
-
-        nameBtnArray.add(eggBtn);
-        nameBtnArray.add(chickenBtn);
-        nameBtnArray.add(porkBtn);
-        nameBtnArray.add(beefBtn);
-        nameBtnArray.add(duckBtn);
-        nameBtnArray.add(lambBtn);
-        nameBtnArray.add(fishBtn);
-        nameBtnArray.add(squidBtn);
-        nameBtnArray.add(shrimpBtn);
-        nameBtnArray.add(crabBtn);
-        nameBtnArray.add(shellBtn);
-        nameBtnArray.add(seaweedBtn);
-        nameBtnArray.add(onionBtn);
-        nameBtnArray.add(welshonBtn);
-        nameBtnArray.add(garlicBtn);
-        nameBtnArray.add(pimentBtn);
-        nameBtnArray.add(paprikaBtn);
-        nameBtnArray.add(cucumberBtn);
-        nameBtnArray.add(carrotBtn);
-        nameBtnArray.add(potatoBtn);
-        nameBtnArray.add(sweetpotBtn);
-        nameBtnArray.add(eggplantBtn);
-        nameBtnArray.add(pumpkinBtn);
-
-        */
         int TgBtnID = getResources().getIdentifier("nameBtn1","id","com.hey.blueberry.recipe");
         for(int i = 0; i < 23; i++) {
             nameBtnArray.add((ToggleButton) findViewById(TgBtnID));
             nameBtnArray.get(i).setOnClickListener(this);
             TgBtnID++;
-            Log.d("버튼명",nameBtnArray.get(i).getText().toString());
         }
 
 
-        //추가 버튼
+        //입력한 음식재료 추가 버튼
         Button addBtn = (Button) findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param v 클릭된 토글버튼
      */
     @Override
-    public void onClick(View v) {  //
+    public void onClick(View v) {
         ToggleButton tb = (ToggleButton) v;
         if (tb.isChecked()) {
             addNewBtn(((ToggleButton) v).getText().toString());
