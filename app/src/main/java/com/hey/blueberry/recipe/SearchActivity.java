@@ -47,7 +47,16 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 //검색 시 동작할 코드
-                searchList.add(s);
+
+                //기존에 검색한 기록이 있을 경우 삭제
+                for(int i = 0; i < searchList.size(); i++)
+                {
+                    if(searchList.get(i).equals(s))
+                        searchList.remove(i);
+                }
+
+                //최근 검색어를 맨 뒤에 추가함
+                searchList.add(0,s);
                 adapter.notifyDataSetChanged();
                 return false;
             }

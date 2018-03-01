@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             style="@style/SearchViewStyle"
             android:layout_gravity="end"
-            android:layout_centerVertical = "true"/>
+            android:layout_centerVertical="true"/>
 
     </android.support.v7.widget.Toolbar>
 
