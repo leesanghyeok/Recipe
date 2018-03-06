@@ -37,30 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
 
-        /*
-        //서치뷰 글씨 색상 설정
-        SearchView searchView = (SearchView) findViewById(R.id.search_view);
-        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchAutoComplete.setHintTextColor(Color.GRAY);
-        searchAutoComplete.setTextColor(Color.WHITE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                //검색 시 동작할 코드
-                Toast.makeText(MainActivity.this, "검색", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                //입력 중 동작할 코드
-                return false;
-            }
-        });
-        */
-
         //어댑터를 만들고 자동완성 스트링 리스트와 연결해줌
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
         AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);

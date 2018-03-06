@@ -30,13 +30,14 @@ public class SearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //서치뷰 글씨 색상 설정
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(Color.GRAY);
         searchAutoComplete.setTextColor(Color.WHITE);
-
+        
         //리스트뷰 아이템 동적 원소 추가
         ListView listView = (ListView) findViewById(R.id.historyListView);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, searchList);
@@ -67,8 +68,6 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
