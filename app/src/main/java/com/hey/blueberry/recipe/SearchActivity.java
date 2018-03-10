@@ -7,11 +7,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by m2j97 on 2018-02-27.
@@ -19,8 +15,8 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    List<String> searchList = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    ListView listView;
+    SearchListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +39,8 @@ public class SearchActivity extends AppCompatActivity {
         //searchAutoComplete.setTextColor(Color.WHITE);
 
         //리스트뷰 아이템 동적 원소 추가
-        ListView listView = (ListView) findViewById(R.id.historyListView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, searchList);
+        listView = (ListView) findViewById(R.id.historyListView);
+        adapter = new SearchListViewAdapter();
         listView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -54,14 +50,11 @@ public class SearchActivity extends AppCompatActivity {
                 //검색 시 동작할 코드
 
                 //기존에 검색한 기록이 있을 경우 삭제
-                for (int i = 0; i < searchList.size(); i++) {
-                    if (searchList.get(i).equals(s))
-                        searchList.remove(i);
-                }
+                if(adapter.isExisted(s))
+                        adapter.removeItem(s);
 
                 //최근 검색어를 맨 뒤에 추가함
-                searchList.add(0, s);
-                adapter.notifyDataSetChanged();
+                adapter.addItem(0, s);
                 return false;
             }
 

@@ -33,13 +33,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/searchToolbar"
         android:layout_margin="5dp"
-        android:text="검색한 요리명 목록"/>
+        android:text="검색한 요리 목록"/>
 
     <ListView
         android:id="@+id/historyListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/listHintText">
+        android:layout_below="@id/listHintText"
+        android:background="#FFFFFF">
 
     </ListView>
 
