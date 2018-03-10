@@ -28,19 +28,23 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        this.setSupportActionBar(toolbar);
+        if (this.getSupportActionBar() != null) {
+            this.getSupportActionBar().setDisplayShowHomeEnabled(true);
+            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            this.getSupportActionBar().setTitle("");
+        }
 
         //서치뷰 글씨 색상 설정
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(Color.GRAY);
-        searchAutoComplete.setTextColor(Color.WHITE);
-        
+        //searchAutoComplete.setTextColor(Color.WHITE);
+
         //리스트뷰 아이템 동적 원소 추가
         ListView listView = (ListView) findViewById(R.id.historyListView);
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, searchList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, searchList);
         listView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -50,14 +54,13 @@ public class SearchActivity extends AppCompatActivity {
                 //검색 시 동작할 코드
 
                 //기존에 검색한 기록이 있을 경우 삭제
-                for(int i = 0; i < searchList.size(); i++)
-                {
-                    if(searchList.get(i).equals(s))
+                for (int i = 0; i < searchList.size(); i++) {
+                    if (searchList.get(i).equals(s))
                         searchList.remove(i);
                 }
 
                 //최근 검색어를 맨 뒤에 추가함
-                searchList.add(0,s);
+                searchList.add(0, s);
                 adapter.notifyDataSetChanged();
                 return false;
             }
