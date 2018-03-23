@@ -17,10 +17,9 @@
             android:id="@+id/mainToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark">
+            android:background="@color/colorPrimary">
 
             <android.support.v7.widget.SearchView
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/search_view"
                 style="@style/SearchViewStyle"
                 android:layout_width="wrap_content"
@@ -37,11 +36,11 @@
             android:layout_below="@id/mainToolbar"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:text="비오는 날, 따끈한 '파전' 어때요?"
+            android:text="@string/recommend_text"
             android:textSize="18dp"/>
 
         <LinearLayout
-            android:id="@+id/addIngred"
+            android:id="@+id/add_ingred"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/recommend"
@@ -280,10 +279,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/addMore"
+            android:id="@+id/add_more"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/addIngred"
+            android:layout_below="@id/add_ingred"
             android:orientation="vertical">
 
             <LinearLayout
@@ -309,10 +308,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/chooseLayout"
+            android:id="@+id/choose_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/addMore"
+            android:layout_below="@id/add_more"
             android:orientation="vertical">
 
             <ImageView
@@ -335,7 +334,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/addedBtnLayout"
+                    android:id="@+id/added_btn_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp">
