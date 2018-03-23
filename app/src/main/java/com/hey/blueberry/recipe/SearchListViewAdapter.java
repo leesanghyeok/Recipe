@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,15 +57,19 @@ public class SearchListViewAdapter extends BaseAdapter{
         nameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s = ((TextView)v).getText().toString();
-                Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                listViewItemList.remove(pos);
+                SearchListViewItem item = new SearchListViewItem();
+                item.setName(((TextView)v).getText().toString());
+                listViewItemList.add(0, item);
+                notifyDataSetChanged();
             }
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
+        cancelBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                listViewItemList.remove(pos);
+                notifyDataSetChanged();
             }
         });
 
