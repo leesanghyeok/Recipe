@@ -1,6 +1,7 @@
 package com.hey.blueberry.recipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.hey.blueberry.recipe.Activity.FavoritesListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home: {
-                // 즐겨찾기 버튼을 눌렀을 때 적절한 액션을 넣는다.
+                // 즐겨찾기 버튼을 눌렀을 때 적절한 액션을 넣는다. -> favoritesListActivity로 이동
                 Toast.makeText(this, "즐겨찾기 버튼 누름", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, FavoritesListActivity.class);
+                startActivity(intent);
                 return true;
             }
         }

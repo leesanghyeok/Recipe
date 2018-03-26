@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -11,12 +12,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="즐겨찾기 리스트"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/favoritesList_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/favorites_view"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+<!--
         <ListView
             android:id="@+id/Slistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </ListView>
+        -->
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
