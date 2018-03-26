@@ -23,16 +23,30 @@ public class SearchListViewAdapter extends BaseAdapter{
 
     }
 
+    /**
+     * 리스트뷰 아이템의 리스트 크기를 출력하는 메소드
+     * @return 리스트뷰 아이템 리스트의 크기
+     */
     @Override
     public int getCount() {
         return listViewItemList.size();
     }
 
+    /**
+     * 리스트뷰 아이템의 리스트에서 해당 위치의 리스트뷰 아이템을 가져오는 메소드
+     * @param position 리스트뷰 아이템 리스트에서 가져올 아이템의 위치
+     * @return 리스트뷰 아이템
+     */
     @Override
     public Object getItem(int position) {
         return listViewItemList.get(position);
     }
 
+    /**
+     * 아이템의 리스트 상의 위치를 출력하는 메소드
+     * @param position 아이템의 리스트 상의 위치
+     * @return 아이템의 리스트 상의 위치
+     */
     @Override
     public long getItemId(int position) {
         return position;
@@ -82,13 +96,11 @@ public class SearchListViewAdapter extends BaseAdapter{
         return convertView;
     }
 
-    public void addItem(String name) {
-        SearchListViewItem item = new SearchListViewItem();
-
-        item.setName(name);
-        listViewItemList.add(item);
-    }
-
+    /**
+     * 리스트뷰 아이템 리스트에 해당 위치에 아이템을 추가하는 메소드
+     * @param position 추가할 위치
+     * @param name 추가할 아이템이 가질 텍스트 정보
+     */
     public void addItem(int position, String name) {
         SearchListViewItem item = new SearchListViewItem();
 
@@ -96,12 +108,21 @@ public class SearchListViewAdapter extends BaseAdapter{
         listViewItemList.add(position, item);
     }
 
+    /**
+     * 리스트뷰 아이템 리스트에서 해당 텍스트 정보를 가진 아이템을 삭제하는 메소드
+     * @param s 삭제할 아이템의 텍스트 정보
+     */
     public void removeItem(String s) {
         for(int  i = 0; i < listViewItemList.size(); i++)
             if(s.equals(listViewItemList.get(i).getName()))
                 listViewItemList.remove(i);
     }
 
+    /**
+     * 리스트뷰 아이템 리스트 상에 해당 텍스트 정보를 가진 아이템이 존재하는지 확인하는 메소드
+     * @param s 확인할 텍스트 정보
+     * @return 리스트 상의 존재 여부
+     */
     public boolean isExisted(String s) {
         for(int  i = 0; i < listViewItemList.size(); i++)
             if(s.equals(listViewItemList.get(i).getName()))

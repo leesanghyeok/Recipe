@@ -71,6 +71,12 @@ public class SearchActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * 툴바 메뉴 버튼의 각 동작코드를 담은 메소드
+     *
+     * @param item 클릭된 메뉴아이템
+     * @return 동작 여부
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
