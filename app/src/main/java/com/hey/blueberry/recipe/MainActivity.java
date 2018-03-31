@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+feature/SearchActivity
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +20,12 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     String[] moreNameArray = new String[]{
             "가재", "고사리", "곤약", "도라지", "도루묵", "도토리묵", "들깨", "어묵", "청포묵", "토란", "톳"
     };
-    List<ToggleButton> nameBtnArray = new ArrayList<>();
-    List<Button> addedBtnArray = new ArrayList<>();
+    List<ToggleButton> nameBtnArray = new ArrayList<>();   // 화면 내 모든 재료명 버튼들
+    List<Button> addedBtnArray = new ArrayList<>();     // 선택되어 하단에 추가된 재료명 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //툴바의 뒤로가기를 활성화하여 즐겨찾기 버튼 아이콘으로 수정
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
+        if(this.getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
+        }
 
         //어댑터를 만들고 자동완성 스트링 리스트와 연결해줌
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
@@ -43,15 +46,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoEdit.setAdapter(adWord);
 
         //식재료 버튼 리스너 및 배열 추가
-        int TgBtnID = getResources().getIdentifier("nameBtn1","id","com.hey.blueberry.recipe");
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn1));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn2));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn3));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn4));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn5));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn6));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn7));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn8));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn9));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn10));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn11));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn12));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn13));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn14));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn15));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn16));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn17));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn18));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn19));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn20));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn21));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn22));
+        nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn23));
+
         for(int i = 0; i < 23; i++) {
-            nameBtnArray.add((ToggleButton) findViewById(TgBtnID));
-            nameBtnArray.get(i).setOnClickListener(this);
-            TgBtnID++;
+            nameBtnArray.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToggleButton tb = (ToggleButton) v;
+                    if (tb.isChecked()) {
+                        addNewBtn(((ToggleButton) v).getText().toString());
+                    }
+                    else {
+                        removeBtn(((ToggleButton) v).getText().toString());
+                    }
+                }
+            });
+            Log.d("버튼명",nameBtnArray.get(i).getText().toString());
         }
 
-
-        //입력한 음식재료 추가 버튼
+        //추가 버튼
         Button addBtn = (Button) findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,22 +133,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * 재료 토글버튼 클릭시 이벤트
-     *
-     * @param v 클릭된 토글버튼
-     */
-    @Override
-    public void onClick(View v) {
-        ToggleButton tb = (ToggleButton) v;
-        if (tb.isChecked()) {
-            addNewBtn(((ToggleButton) v).getText().toString());
-        }
-        else {
-            removeBtn(((ToggleButton) v).getText().toString());
-        }
-    }
-
-    /**
      * 해당 파라미터의 값을 text로 가진 버튼 생성하는 함수
      *
      * @param name 생성할 버튼의 text 값
@@ -122,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void addNewBtn(String name) {
         //추가되지 않은 새로운 음식재료일 경우 버튼 생성 및 추가
         if (isNew(name)) {
-            LinearLayout layout = (LinearLayout) findViewById(R.id.addedBtnLayout);
+            LinearLayout layout = (LinearLayout) findViewById(R.id.added_btn_layout);
             Button newBtn = new Button(this);
             newBtn.setText(name);
             newBtn.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void removeBtn(String name) {
         //해당 이름의 음식 재료 선택 해제
         Toast.makeText(MainActivity.this, name + " 삭제", Toast.LENGTH_SHORT).show();
-        LinearLayout layout = (LinearLayout) findViewById(R.id.addedBtnLayout);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.added_btn_layout);
         for (int i = 0; i < addedBtnArray.size(); i++) {
             if (name.equals(addedBtnArray.get(i).getText().toString())) {
                 layout.removeView(addedBtnArray.get(i));
