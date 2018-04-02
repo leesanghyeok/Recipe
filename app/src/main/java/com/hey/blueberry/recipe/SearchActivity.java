@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 public class SearchActivity extends AppCompatActivity {
 
-    ListView listView;
+    private ListView listView;
     SearchListViewAdapter adapter;
 
     @Override
@@ -36,7 +36,6 @@ public class SearchActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(Color.GRAY);
-        //searchAutoComplete.setTextColor(Color.WHITE);
 
         //리스트뷰 아이템 동적 원소 추가
         listView = (ListView) findViewById(R.id.historyListView);

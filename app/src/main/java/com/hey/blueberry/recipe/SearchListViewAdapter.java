@@ -17,11 +17,7 @@ import java.util.List;
 
 public class SearchListViewAdapter extends BaseAdapter{
 
-    private List<SearchListViewItem> listViewItemList = new ArrayList<>();
-
-    public SearchListViewAdapter(){
-
-    }
+    private List<String> listViewItemList = new ArrayList<>();
 
     /**
      * 리스트뷰 아이템의 리스트 크기를 출력하는 메소드
@@ -53,8 +49,7 @@ public class SearchListViewAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
@@ -71,9 +66,8 @@ public class SearchListViewAdapter extends BaseAdapter{
         nameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listViewItemList.remove(pos);
-                SearchListViewItem item = new SearchListViewItem();
-                item.setName(((TextView)v).getText().toString());
+                String item = ((TextView) v).getText().toString();
+                listViewItemList.remove(position);
                 listViewItemList.add(0, item);
                 notifyDataSetChanged();
             }
@@ -82,16 +76,13 @@ public class SearchListViewAdapter extends BaseAdapter{
         cancelBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listViewItemList.remove(pos);
+                listViewItemList.remove(position);
                 notifyDataSetChanged();
             }
         });
 
-        // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        SearchListViewItem listViewItem = listViewItemList.get(position);
-
-        // 아이템 내 각 위젯에 데이터 반영
-        nameTextView.setText(listViewItem.getName());
+        // 아이템 내 위젯에 데이터 반영
+        nameTextView.setText(listViewItemList.get(position));
 
         return convertView;
     }
@@ -102,10 +93,7 @@ public class SearchListViewAdapter extends BaseAdapter{
      * @param name 추가할 아이템이 가질 텍스트 정보
      */
     public void addItem(int position, String name) {
-        SearchListViewItem item = new SearchListViewItem();
-
-        item.setName(name);
-        listViewItemList.add(position, item);
+        listViewItemList.add(position, name);
     }
 
     /**
@@ -114,7 +102,7 @@ public class SearchListViewAdapter extends BaseAdapter{
      */
     public void removeItem(String s) {
         for(int  i = 0; i < listViewItemList.size(); i++)
-            if(s.equals(listViewItemList.get(i).getName()))
+            if(s.equals(listViewItemList.get(i)))
                 listViewItemList.remove(i);
     }
 
@@ -124,10 +112,6 @@ public class SearchListViewAdapter extends BaseAdapter{
      * @return 리스트 상의 존재 여부
      */
     public boolean isExisted(String s) {
-        for(int  i = 0; i < listViewItemList.size(); i++)
-            if(s.equals(listViewItemList.get(i).getName()))
-                return true;
-
-        return false;
+        return listViewItemList.contains(s);
     }
 }
