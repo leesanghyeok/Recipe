@@ -8,7 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+    protected static final String DATABASE_NAME = "databases/food.db";
+    protected static final int DATABASE_VERSION = 1;
+
+    public static final String TABLE_NAME = "bookmarks";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
+
+        DBHelper DB=new DBHelper(getApplicationContext());
+        String[] s=new String[]{"매생이","굴"};
+        System.out.println(s);
+        DB.search(s);
+
 
         //서치뷰 글씨 색상 설정
         SearchView searchView = (SearchView) findViewById(R.id.search_view);
