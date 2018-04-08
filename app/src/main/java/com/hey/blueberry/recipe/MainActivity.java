@@ -1,12 +1,12 @@
 package com.hey.blueberry.recipe;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -39,28 +39,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
         }
-
-        //서치뷰 글씨 색상 설정
-        SearchView searchView = (SearchView) findViewById(R.id.search_view);
-        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchAutoComplete.setHintTextColor(Color.GRAY);
-        searchAutoComplete.setTextColor(Color.WHITE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                //검색 시 동작할 코드
-                Toast.makeText(MainActivity.this, "검색", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                //입력 중 동작할 코드
-                return false;
-            }
-        });
 
         //어댑터를 만들고 자동완성 스트링 리스트와 연결해줌
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
@@ -124,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     /**
      * 액션바 메뉴 버튼의 각 동작코드를 담은 함수
      *
@@ -137,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home: {
                 // 즐겨찾기 버튼을 눌렀을 때 적절한 액션을 넣는다.
                 Toast.makeText(this, "즐겨찾기 버튼 누름", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            case R.id.action_search: {
+                Toast.makeText(this, "검색 버튼 누름", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this,SearchActivity.class);
+                startActivity(intent);
                 return true;
             }
         }
