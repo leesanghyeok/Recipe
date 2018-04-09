@@ -34,7 +34,7 @@ public class SearchListViewAdapter extends BaseAdapter{
      * @return 리스트뷰 아이템
      */
     @Override
-    public Object getItem(int position) {
+    public String getItem(int position) {
         return listViewItemList.get(position);
     }
 
@@ -113,5 +113,9 @@ public class SearchListViewAdapter extends BaseAdapter{
      */
     public boolean isExisted(String s) {
         return listViewItemList.contains(s);
+    }
+
+    public void clear(){
+        listViewItemList.clear();
     }
 }
