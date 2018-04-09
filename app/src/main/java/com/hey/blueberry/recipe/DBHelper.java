@@ -77,7 +77,7 @@ public class DBHelper extends SQLiteAssetHelper {
                     where,
                     null, null, null, null);
             while (cursor.moveToNext()) {
-                Food tmp = new Food(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                Food tmp = new Food(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
                 result.add(tmp);
                 System.out.println(tmp.getName() + "\n" + tmp.getDetailUrl() + "\n" + tmp.getImage() + "\n" + tmp.getMaterial() + "\n" + tmp.getTime() + "\n" + tmp.getDifficulty());
             }
