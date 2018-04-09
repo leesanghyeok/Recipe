@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,8 +50,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         //이미지...
         //holder.image.setBackground(drawable);
-/*
-        Thread mThread = new Thread() {
+
+        /*Thread mThread = new Thread() {
             public void run() {
                 try {
                     URL url = new URL(item.getImgUrl());
@@ -62,14 +63,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     InputStream is = conn.getInputStream();
                 }
             }
-        }
-        */
+        }*/
+
 
         //인자 집어 넣어 줌
         holder.material.setText(item.getMaterial());
         holder.title.setText(item.getTitle());
         holder.cooktime.setText(item.getCooktime());
         holder.difficulty.setText(item.getDifficulty());
+        if(item.isFavorite())
+            holder.isFav.setImageResource(android.R.drawable.btn_star_big_on);
+        else
+            holder.isFav.setImageResource(android.R.drawable.btn_star_big_off);
+
 
         //카드 클릭 시 url로 이동
         holder.cardview.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +86,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -93,6 +100,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         TextView material;
         TextView cooktime;
         TextView difficulty;
+        ImageButton isFav;
         CardView cardview;
 
         public ViewHolder(View itemView) {
@@ -102,6 +110,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             material = (TextView) itemView.findViewById(R.id.material);
             cooktime = (TextView) itemView.findViewById(R.id.cooktime);
             difficulty = (TextView) itemView.findViewById(R.id.difficulty);
+            isFav = (ImageButton) itemView.findViewById(R.id.isFav);
             cardview = (CardView) itemView.findViewById(R.id.cardview);
         }
     }

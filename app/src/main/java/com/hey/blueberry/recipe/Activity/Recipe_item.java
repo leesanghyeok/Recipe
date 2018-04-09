@@ -12,6 +12,11 @@ public class Recipe_item {
     private String cooktime;
     private String  imgUrl;
     private String linkUrl;
+    private boolean favorite;
+
+    public boolean isFavorite() {
+        return favorite;
+    }
 
     public String getImgUrl() {
         return imgUrl;
@@ -41,7 +46,7 @@ public class Recipe_item {
         return material;
     }
 
-    Recipe_item(int image, String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl){
+    Recipe_item(int image, String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl, boolean favorite){
         this.image=image;
         this.title=title;
         this.material=material;
@@ -49,5 +54,6 @@ public class Recipe_item {
         this.cooktime=cooktime;
         this.imgUrl=imgUrl;
         this.linkUrl=linkUrl;
+        this.favorite=favorite;
     }
 }
