@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Recipe</string>
-
+    <string name="recommend_text">비오는 날, 따끈따끈한 \'파전\' 어때요?</string>
     <string name="search_hint">입력하세요</string>
 </resources>
