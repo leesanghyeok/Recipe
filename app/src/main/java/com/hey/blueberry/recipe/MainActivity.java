@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     protected static final String DATABASE_NAME = "databases/food.db";
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
 
         DBHelper DB=new DBHelper(getApplicationContext());
-        String[] s=new String[]{"매생이","굴"};
+        List<String> s=new ArrayList<>();
+        s.add("매생이");
+        s.add("국");
         System.out.println(s);
         DB.search(s);
 
