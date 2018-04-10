@@ -1,5 +1,11 @@
 package com.hey.blueberry.recipe;
 
+
+import android.graphics.Color;
+import android.support.v7.widget.SearchView;
+
+import java.io.IOException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String TABLE_NAME = "bookmarks";
     String[] moreNameArray = new String[]{
             "가재", "고사리", "곤약", "도라지", "도루묵", "도토리묵", "들깨", "어묵", "청포묵", "토란", "톳"
     };
@@ -35,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         //툴바의 뒤로가기를 활성화하여 즐겨찾기 버튼 아이콘으로 수정
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
+
+        DBHelper DB=new DBHelper(getApplicationContext());
+        List<String> s=new ArrayList<>();
+        s.add("매생이");
+        s.add("국");
+        System.out.println(s);
+        DB.search(s);
+
+
         if(this.getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
@@ -102,17 +119,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    /**
-     * 액션바 메뉴 버튼의 각 동작코드를 담은 함수
-     *
-     * @param item 클릭된 메뉴아이템
-     * @return 동작 여부
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
