@@ -17,10 +17,10 @@ import static java.lang.Math.ceil;
  */
 
 public class CrawlingInformation {
-    List<Food> food = new ArrayList<Food>();
-    String htmlPageUrl = "http://cook.miznet.daum.net/search/search.do?t=recipe&q=";
+    static List<Food> food = new ArrayList<Food>();
+    static String htmlPageUrl = "http://cook.miznet.daum.net/search/search.do?t=recipe&q=";
 
-    private class JsoupAsynTask extends AsyncTask<Void, Void, Void> {
+    private static class JsoupAsynTask extends AsyncTask<Void, Void, Void> {
 
         //@Override
         protected  void onPreExecute(){
@@ -84,7 +84,7 @@ public class CrawlingInformation {
         }
     }
 
-    public void CallAsynTask(String content) {
+    public void callAsynTask(String content) {
         content = content.replace(" ", "+");
         htmlPageUrl += content;
         JsoupAsynTask j=new JsoupAsynTask();

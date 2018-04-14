@@ -68,9 +68,8 @@ public class DBHelper extends SQLiteAssetHelper {
                     where,
                     null, null, null, null);
             while (cursor.moveToNext()) {
-                Food tmp = new Food(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
-                result.add(tmp);
-                System.out.println(tmp.getName() + "\n" + tmp.getDetailUrl() + "\n" + tmp.getImage() + "\n" + tmp.getMaterial() + "\n" + tmp.getTime() + "\n" + tmp.getDifficulty());
+                Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")), cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")));
+                result.add(food);
             }
             return result;
         }
