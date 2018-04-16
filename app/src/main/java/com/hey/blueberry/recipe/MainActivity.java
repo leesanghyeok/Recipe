@@ -28,7 +28,7 @@ import java.util.List;
 
 class MainActivity extends AppCompatActivity {
 
-    public static final String TABLE_NAME = "bookmarks";
+    private static final String TABLE_NAME = "bookmarks";
     String[] moreNameArray = new String[]{
             "가재", "고사리", "곤약", "도라지", "도루묵", "도토리묵", "들깨", "어묵", "청포묵", "토란", "톳"
     };
