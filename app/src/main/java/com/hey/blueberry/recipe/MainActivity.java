@@ -26,9 +26,9 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+class MainActivity extends AppCompatActivity {
 
-    public static final String TABLE_NAME = "bookmarks";
+    private static final String TABLE_NAME = "bookmarks";
     String[] moreNameArray = new String[]{
             "가재", "고사리", "곤약", "도라지", "도루묵", "도토리묵", "들깨", "어묵", "청포묵", "토란", "톳"
     };
@@ -44,12 +44,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
-        DBHelper DB=new DBHelper(getApplicationContext());
+        DBHelper db=new DBHelper(getApplicationContext());
         List<String> s=new ArrayList<>();
         s.add("매생이");
         s.add("국");
         System.out.println(s);
-        DB.search(s);
+
+        List<Food> result = db.search(s);
+        for(int i=0;i<result.size();i++)
+            System.out.println(result.get(i).getName() + "\n" + result.get(i).getDetailUrl() + "\n" + result.get(i).getImage() + "\n" + result.get(i).getMaterial() + "\n" + result.get(i).getTime() + "\n" + result.get(i).getDifficulty());
+
+
+
 
 
         if(this.getSupportActionBar() != null) {
