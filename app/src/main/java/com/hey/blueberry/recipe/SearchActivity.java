@@ -1,10 +1,7 @@
 package com.hey.blueberry.recipe;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +24,10 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         adapter = new SearchListViewAdapter();
-        loadArray(this);
+
+        SearchHistoryManager searchHistoryManager = new SearchHistoryManager(getApplicationContext());
+        adapter.setDataManager(searchHistoryManager);
+        adapter.setItems(searchHistoryManager.getItems());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
 
@@ -70,12 +70,6 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        saveArray();
-        super.onDestroy();
-    }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
@@ -100,29 +94,4 @@ public class SearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean saveArray()
-    {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor mEdit1 = sp.edit();
-    /* sKey is an array */
-        mEdit1.putInt("Status_size", adapter.getCount());
-
-        for(int i=0;i<adapter.getCount();i++)
-        {
-            mEdit1.remove("Status_" + i);
-            mEdit1.putString("Status_" + i, adapter.getItem(i));
-        }
-
-        return mEdit1.commit();
-    }
-
-    public void loadArray(Context mContext) {
-        SharedPreferences mSharedPreference1 = PreferenceManager.getDefaultSharedPreferences(mContext);
-        adapter.clear();
-        int size = mSharedPreference1.getInt("Status_size", 0);
-
-        for (int i = 0; i < size; i++) {
-            adapter.addItem(i, mSharedPreference1.getString("Status_" + i, null));
-        }
-    }
 }
