@@ -4,8 +4,8 @@ package com.hey.blueberry.recipe.Activity;
  * Created by daeyo on 2018-02-20.
  */
 
-public class Recipe_item {
-    private int image;
+public class RecipeItem {
+    private int imageld;
     private String title;
     private String material;
     private String difficulty;
@@ -34,8 +34,8 @@ public class Recipe_item {
         return cooktime;
     }
 
-    public int getImage() {
-        return this.image;
+    public int getImageld() {
+        return imageld;
     }
 
     public String getTitle() {
@@ -46,8 +46,8 @@ public class Recipe_item {
         return material;
     }
 
-    Recipe_item(int image, String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl, boolean favorite){
-        this.image=image;
+    RecipeItem(int imageld, String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl, boolean favorite){
+        this.imageld=imageld;
         this.title=title;
         this.material=material;
         this.difficulty=difficulty;

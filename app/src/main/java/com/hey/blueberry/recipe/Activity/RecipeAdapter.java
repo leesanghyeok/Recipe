@@ -3,9 +3,8 @@ package com.hey.blueberry.recipe.Activity;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hey.blueberry.recipe.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -26,14 +26,13 @@ import java.util.List;
  */
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
-    Context context;
-    List<Recipe_item> items;
-    int item_layout;
+    private Context context;
+    private List<RecipeItem> items;
+    Handler handler = new Handler();
 
-    public RecipeAdapter(Context context, List<Recipe_item> items, int item_layout) {
+     RecipeAdapter(Context context, List<RecipeItem> items) {
         this.context = context;
         this.items = items;
-        this.item_layout = item_layout;
     }
 
     @Override
@@ -45,25 +44,41 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Recipe_item item = items.get(position);
-        Drawable drawable = context.getResources().getDrawable(item.getImage());
+        final RecipeItem item = items.get(position);
+        //Drawable drawable = context.getResources().getDrawable(item.getImageld());
 
         //이미지...
         //holder.image.setBackground(drawable);
 
-        /*Thread mThread = new Thread() {
+
+      /*  Thread mThread = new Thread(new Runnable() {
+            @Override
             public void run() {
                 try {
                     URL url = new URL(item.getImgUrl());
+                    InputStream is = url.openStream();
+                    final Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    handler.post(new Runnable() {
 
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
+                        @Override
+                        public void run() {
+                            holder.imageld.setImageBitmap(bitmap);
+                        }
+                    });
+                    holder.imageld.setImageBitmap(bitmap);
+                } catch(Exception e){
 
-                    InputStream is = conn.getInputStream();
                 }
             }
-        }*/
+        });
+
+        mThread.start();
+*/
+      ImageView picassoImageView = holder.imageld;
+          Picasso.get()
+                  .load(item.getImgUrl())
+                  .into(picassoImageView);
+
 
 
         //인자 집어 넣어 줌
@@ -82,7 +97,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, item.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/" + item.getLinkUrl()));
+                Intent intent = new Intent(context, RecipeWebActivity.class);
+                intent.putExtra("url", "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/" + item.getLinkUrl());
                 context.startActivity(intent);
             }
         });
@@ -94,8 +110,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return this.items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageld;
         TextView title;
         TextView material;
         TextView cooktime;
@@ -103,9 +119,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         ImageButton isFav;
         CardView cardview;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.stepImage);
+            imageld = (ImageView) itemView.findViewById(R.id.recipe_image);
             title = (TextView) itemView.findViewById(R.id.title);
             material = (TextView) itemView.findViewById(R.id.material);
             cooktime = (TextView) itemView.findViewById(R.id.cooktime);
