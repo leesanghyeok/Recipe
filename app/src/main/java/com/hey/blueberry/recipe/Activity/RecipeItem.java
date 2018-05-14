@@ -12,6 +12,11 @@ public class RecipeItem {
     private String cooktime;
     private String  imgUrl;
     private String linkUrl;
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     private boolean favorite;
 
     public boolean isFavorite() {

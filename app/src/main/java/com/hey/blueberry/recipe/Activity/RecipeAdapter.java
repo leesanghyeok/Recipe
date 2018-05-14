@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,40 +44,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final RecipeItem item = items.get(position);
-        //Drawable drawable = context.getResources().getDrawable(item.getImageld());
 
-        //이미지...
-        //holder.image.setBackground(drawable);
-
-
-      /*  Thread mThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(item.getImgUrl());
-                    InputStream is = url.openStream();
-                    final Bitmap bitmap = BitmapFactory.decodeStream(is);
-                    handler.post(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            holder.imageld.setImageBitmap(bitmap);
-                        }
-                    });
-                    holder.imageld.setImageBitmap(bitmap);
-                } catch(Exception e){
-
-                }
-            }
-        });
-
-        mThread.start();
-*/
       ImageView picassoImageView = holder.imageld;
           Picasso.get()
                   .load(item.getImgUrl())
+                  .fit()
+                  .centerCrop()
                   .into(picassoImageView);
 
 
@@ -103,6 +78,21 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             }
         });
 
+        //별을 누르면 목록에서 삭제
+        holder.isFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("aaaa", "아이템의 위치 : " + position);
+                item.setFavorite(false);
+                delete(position);
+            }
+
+            public void delete(int position) {
+                items.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
     }
 
     @Override
@@ -110,7 +100,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return this.items.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder  {
         ImageView imageld;
         TextView title;
         TextView material;

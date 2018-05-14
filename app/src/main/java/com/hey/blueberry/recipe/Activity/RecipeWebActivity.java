@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.hey.blueberry.recipe.R;
 
@@ -31,6 +32,15 @@ public class RecipeWebActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true); //자바스크립트 동작 여부
         webSettings.setSupportZoom(true); //손가락으로 줌 사용할지 여부
         webSettings.setBuiltInZoomControls(true); //내부 줌 사용 여부
+
+        //웹뷰를 새창으로 띄우지 않게 override
+        recipeWeb.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
 
         //웹뷰 실행
         recipeWeb.loadUrl(url);
