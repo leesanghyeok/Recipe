@@ -16,12 +16,18 @@ import android.widget.ListView;
 public class SearchActivity extends AppCompatActivity {
 
     private ListView listView;
-    SearchListViewAdapter adapter;
+    private SearchListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        adapter = new SearchListViewAdapter();
+
+        SearchHistoryManager searchHistoryManager = new SearchHistoryManager(getApplicationContext());
+        adapter.setDataManager(searchHistoryManager);
+        adapter.setItems(searchHistoryManager.getItems());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
 
@@ -39,7 +45,6 @@ public class SearchActivity extends AppCompatActivity {
 
         //리스트뷰 아이템 동적 원소 추가
         listView = (ListView) findViewById(R.id.historyListView);
-        adapter = new SearchListViewAdapter();
         listView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -88,4 +93,5 @@ public class SearchActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
