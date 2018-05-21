@@ -5,19 +5,19 @@ package com.hey.blueberry.recipe;
  */
 
 public class Food {
+    private String title;
     private String material;
-    private String name;
-    private String image;
-    private String detailUrl;
-    private String time;
+    private String imgUrl;
+    private String linkUrl;
+    private String cooktime;
     private String difficulty;
 
     public Food(String name,String detailUrl,String image,String material,String time,String difficulty){
         this.material=material;
-        this.name=name;
-        this.image=image;
-        this.detailUrl=detailUrl;
-        this.time=time;
+        this.title=name;
+        this.imgUrl=image;
+        this.linkUrl=detailUrl;
+        this.cooktime=time;
         this.difficulty=difficulty;
     }
 
@@ -26,19 +26,17 @@ public class Food {
     }
 
     public String getName() {
-        return name;
+        return title;
     }
 
-    public String getImage() {
-        return image;
-    }
+    public String getImage() { return imgUrl; }
 
     public String getDetailUrl() {
-        return detailUrl;
+        return linkUrl;
     }
 
     public String getTime() {
-        return time;
+        return cooktime;
     }
 
     public String getDifficulty() {

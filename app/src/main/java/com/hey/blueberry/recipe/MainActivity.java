@@ -45,15 +45,25 @@ class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         DBHelper db=new DBHelper(getApplicationContext());
-        List<String> s=new ArrayList<>();
+        UserDBHelper dbu= new UserDBHelper(getApplicationContext());
+        dbu.Insert(new Food("매생이 국","www.weara.com","www.image.com","물건","30분","어려움"));
+        Food f=dbu.getFoodbyID(0);
+        System.out.println(f.getName()+f.getDetailUrl());
+        if(dbu.Delete(f)!=1)
+            System.out.println(f.getName()+f.getDetailUrl());
+        f=dbu.getFoodbyID(0);
+        if(f!=null)System.out.println(f.getName()+f.getDetailUrl());
+
+        //System.out.println(dbu.Delete(0));
+        //f=dbu.getFoodbyID(0);
+        /*List<String> s=new ArrayList<>();
         s.add("매생이");
         s.add("국");
         System.out.println(s);
-
         List<Food> result = db.search(s);
         for(int i=0;i<result.size();i++)
             System.out.println(result.get(i).getName() + "\n" + result.get(i).getDetailUrl() + "\n" + result.get(i).getImage() + "\n" + result.get(i).getMaterial() + "\n" + result.get(i).getTime() + "\n" + result.get(i).getDifficulty());
-
+*/
 
 
 
