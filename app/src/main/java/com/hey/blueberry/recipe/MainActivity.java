@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     List<ToggleButton> nameBtnArray = new ArrayList<>();   // 화면 내 모든 재료명 버튼들
     List<Button> addedBtnArray = new ArrayList<>();     // 선택되어 하단에 추가된 재료명 버튼
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //툴바의 뒤로가기를 활성화하여 즐겨찾기 버튼 아이콘으로 수정
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
+
         if(this.getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
         AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
         autoEdit.setAdapter(adWord);
+
+
 
         //식재료 버튼 리스너 및 배열 추가
         nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn1));
