@@ -29,7 +29,7 @@ public class UserDBHelper extends SQLiteAssetHelper{
         this.myContext = context;
         setForcedUpgrade();
     }
-    public Food Insert(Food f) {
+    public Food insert(Food f) {
         myDataBase = getWritableDatabase();
         String sqlInsert = "INSERT INTO FOOD" + "(NAME, DETAILURL, IMAGE, MATERIAL, TIME, DIFFICULTY) VALUES (" +"'"+ f.getName() +"'"+ "," + "'" + f.getDetailUrl() + "'," + "'" + f.getImage() + "'," +"'" + f.getMaterial() + "',"+"'" + f.getTime() + "',"+"'" + f.getDifficulty() + "'"+")";
         myDataBase.execSQL(sqlInsert);
@@ -37,7 +37,7 @@ public class UserDBHelper extends SQLiteAssetHelper{
         return f;
     }
 
-    public int Delete(int id){
+    public int delete(int id){
         myDataBase = getWritableDatabase();
         /*String sqldelete = "DELETE FROM FOOD WHERE ID="+id;
         myDataBase.execSQL(sqldelete);*/
@@ -45,7 +45,7 @@ public class UserDBHelper extends SQLiteAssetHelper{
         //myDataBase.close();
     }
 
-    public int Delete(Food f){
+    public int delete(Food f){
         myDataBase = getWritableDatabase();
         int res = myDataBase.delete("FOOD","NAME = "+"'"+f.getName()+"'",null);
         return res;
