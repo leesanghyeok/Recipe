@@ -14,13 +14,14 @@
                   android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
         <activity android:name=".Activity.FavoritesListActivity">        </activity>
         <activity android:name=".Activity.RecipeWebActivity">        </activity>
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>
