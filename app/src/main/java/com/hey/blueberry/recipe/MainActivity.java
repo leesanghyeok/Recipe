@@ -35,6 +35,8 @@ class MainActivity extends AppCompatActivity {
     List<ToggleButton> nameBtnArray = new ArrayList<>();   // 화면 내 모든 재료명 버튼들
     List<Button> addedBtnArray = new ArrayList<>();     // 선택되어 하단에 추가된 재료명 버튼
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,10 @@ class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
         AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
         autoEdit.setAdapter(adWord);
+
+
+        DBexample dbu = new DBexample(getApplicationContext());
+        dbu.example();
 
         //식재료 버튼 리스너 및 배열 추가
         nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn1));
