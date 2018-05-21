@@ -31,7 +31,6 @@ public class DBHelper extends SQLiteAssetHelper {
         super(context, DB_NAME, null, 2);
         this.myContext = context;
         setForcedUpgrade();
-        myDataBase = getReadableDatabase();
     }
 
     @Override
@@ -43,16 +42,9 @@ public class DBHelper extends SQLiteAssetHelper {
         super.close();
 
     }
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-
-    // Add your public helper methods to access and get content from the database.
-    // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-    // to you to create adapters for your views.
 
     public List<Food> search(List<String> content) {
+        myDataBase = getReadableDatabase();
         List<Food> result = new ArrayList<>();
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         if("".equals(content.get(0)))return result;
@@ -68,7 +60,7 @@ public class DBHelper extends SQLiteAssetHelper {
                     where,
                     null, null, null, null);
             while (cursor.moveToNext()) {
-                Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")), cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")));
+                Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/"+cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")).trim() , cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")));
                 result.add(food);
             }
             return result;
