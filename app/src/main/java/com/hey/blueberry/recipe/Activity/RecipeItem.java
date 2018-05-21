@@ -5,7 +5,6 @@ package com.hey.blueberry.recipe.Activity;
  */
 
 public class RecipeItem {
-    private int imageld;
     private String title;
     private String material;
     private String difficulty;
@@ -39,9 +38,7 @@ public class RecipeItem {
         return cooktime;
     }
 
-    public int getImageld() {
-        return imageld;
-    }
+
 
     public String getTitle() {
         return this.title;
@@ -51,8 +48,7 @@ public class RecipeItem {
         return material;
     }
 
-    RecipeItem(int imageld, String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl, boolean favorite){
-        this.imageld=imageld;
+    RecipeItem( String title, String material, String cooktime, String difficulty, String imgUrl, String linkUrl, boolean favorite){
         this.title=title;
         this.material=material;
         this.difficulty=difficulty;
