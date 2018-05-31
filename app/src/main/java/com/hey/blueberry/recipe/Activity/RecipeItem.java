@@ -38,8 +38,6 @@ public class RecipeItem {
         return cooktime;
     }
 
-
-
     public String getTitle() {
         return this.title;
     }

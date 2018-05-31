@@ -31,7 +31,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private List<RecipeItem> items;
     Handler handler = new Handler();
 
-     RecipeAdapter(Context context, List<RecipeItem> items) {
+    RecipeAdapter(Context context, List<RecipeItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -44,16 +44,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final RecipeItem item = items.get(position);
 
-      ImageView picassoImageView = holder.imageld;
-          Picasso.get()
-                  .load(item.getImgUrl())
-                  .fit()
-                  .centerCrop()
-                  .into(picassoImageView);
-
+        ImageView picassoImageView = holder.imageld;
+        Picasso.get()
+                .load(item.getImgUrl())
+                .fit()
+                .centerCrop()
+                .into(picassoImageView);
 
 
         //인자 집어 넣어 줌
@@ -61,7 +60,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.title.setText(item.getTitle());
         holder.cooktime.setText(item.getCooktime());
         holder.difficulty.setText(item.getDifficulty());
-        if(item.isFavorite())
+        if (item.isFavorite())
             holder.isFav.setImageResource(android.R.drawable.btn_star_big_on);
         else
             holder.isFav.setImageResource(android.R.drawable.btn_star_big_off);
@@ -78,13 +77,27 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             }
         });
 
-        //별을 누르면 목록에서 삭제
+        /**
+         * 클릭으로 즐겨찾기 여부를 변경 하는 함수
+         */
         holder.isFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("aaaa", "아이템의 위치 : " + position);
-                item.setFavorite(false);
-                delete(position);
+
+                if (item.isFavorite()) {
+                    item.setFavorite(false);
+                    Log.d("aaa_", "isFav: " + item.isFavorite());
+                    holder.isFav.setImageResource(android.R.drawable.btn_star_big_off);
+
+                    //FavoritesListActivity일 경우 삭제까지 진행
+                    //delete(position);
+                } else {
+                    item.setFavorite(true);
+                    Log.d("aaa_", "isFav: " + item.isFavorite());
+                    holder.isFav.setImageResource(android.R.drawable.btn_star_big_on);
+
+                }
             }
 
             public void delete(int position) {
@@ -100,7 +113,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return this.items.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder  {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageld;
         TextView title;
         TextView material;

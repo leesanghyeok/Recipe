@@ -11,14 +11,17 @@ public class Food {
     private String linkUrl;
     private String cooktime;
     private String difficulty;
+    private boolean favorite;
 
-    public Food(String name,String detailUrl,String image,String material,String time,String difficulty){
+
+    public Food(String name,String detailUrl,String image,String material,String time,String difficulty, boolean favorite){
         this.material=material;
         this.title=name;
         this.imgUrl=image;
         this.linkUrl=detailUrl;
         this.cooktime=time;
         this.difficulty=difficulty;
+        this.favorite=Favorite;
     }
 
     public String getMaterial() {
@@ -42,4 +45,14 @@ public class Food {
     public String getDifficulty() {
         return difficulty;
     }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 }
+
+
