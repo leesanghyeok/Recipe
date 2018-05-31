@@ -1,5 +1,6 @@
 package com.hey.blueberry.recipe.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,11 +23,16 @@ public class SearchListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchlist);
 
+        Intent intent = getIntent();
+        String schname;
+
+        schname = intent.getStringExtra("schname");
+
         RecyclerView mRecyclerView1;
         RecyclerView.Adapter mAdapter;
         RecyclerView.LayoutManager mLayoutManager;
 
-        mRecyclerView1 = (RecyclerView) findViewById(R.id.favoritesList_view);
+        mRecyclerView1 = (RecyclerView) findViewById(R.id.searchList_view);
         mRecyclerView1.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);

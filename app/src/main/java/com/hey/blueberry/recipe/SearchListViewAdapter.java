@@ -1,12 +1,16 @@
 package com.hey.blueberry.recipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.hey.blueberry.recipe.Activity.SearchListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,7 @@ public class SearchListViewAdapter extends BaseAdapter {
 
     private List<String> listViewItemList = new ArrayList<>();
     private SearchHistoryManager searchHistoryManager;
-
+    private Context context;
     public void setDataManager(SearchHistoryManager manager) {
         this.searchHistoryManager = manager;
     }
@@ -58,7 +62,7 @@ public class SearchListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final Context context = parent.getContext();
+        context = parent.getContext();
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
@@ -104,6 +108,12 @@ public class SearchListViewAdapter extends BaseAdapter {
     public void addItem(int position, String name) {
         searchHistoryManager.addItem(listViewItemList.size(), name);
         listViewItemList.add(position, name);
+
+        //검색 시 해당 검색 제품의 SearchListActivity로 이동
+        Toast.makeText(context, name+" 검색", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, SearchListActivity.class);
+        intent.putExtra("schname", name);
+        context.startActivity(intent);
     }
 
     /**
