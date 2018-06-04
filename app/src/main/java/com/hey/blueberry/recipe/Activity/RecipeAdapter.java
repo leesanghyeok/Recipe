@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hey.blueberry.recipe.R;
+import com.hey.blueberry.recipe.State;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,9 +32,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private List<RecipeItem> items;
     Handler handler = new Handler();
 
-    RecipeAdapter(Context context, List<RecipeItem> items) {
+    private State state;
+
+    RecipeAdapter(Context context, List<RecipeItem> items,State state) {
         this.context = context;
         this.items = items;
+        this.state = state;
     }
 
     @Override
@@ -91,7 +95,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     holder.isFav.setImageResource(android.R.drawable.btn_star_big_off);
 
                     //FavoritesListActivity일 경우 삭제까지 진행
-                    //delete(position);
+                    if(state == State.FACACT) {
+                        delete(position);
+                    }
                 } else {
                     item.setFavorite(true);
                     Log.d("aaa_", "isFav: " + item.isFavorite());

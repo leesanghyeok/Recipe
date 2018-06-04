@@ -14,14 +14,14 @@ public class Food {
     private boolean favorite;
 
 
-    public Food(String name,String detailUrl,String image,String material,String time,String difficulty, boolean favorite){
+    public Food(String name,String detailUrl,String image,String material,String time,String difficulty){
         this.material=material;
         this.title=name;
         this.imgUrl=image;
         this.linkUrl=detailUrl;
         this.cooktime=time;
         this.difficulty=difficulty;
-        this.favorite=Favorite;
+        //this.favorite=favorite;
     }
 
     public String getMaterial() {

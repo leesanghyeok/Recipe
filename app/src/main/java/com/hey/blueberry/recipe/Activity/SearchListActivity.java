@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hey.blueberry.recipe.R;
+import com.hey.blueberry.recipe.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ import java.util.List;
  */
 
 public class SearchListActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -50,7 +50,7 @@ public class SearchListActivity extends AppCompatActivity {
         items.add(new RecipeItem("[오소리감투 볶음] 오소리감투 볶음 만드는 법", "요리재료 오소리감투 외 - 돼지부속물 , 레시피 , 만드는법 , 만들기 , 반찬 , 볶음 , 오소리감투 , 오소리감투볶음 , 요리", "15분 이내", "보통", "http://t1.daumcdn.net/thumb/C115x85/?fname=http%3A%2F%2Fm1.daumcdn.net%2Fcfile163%2Fattach%2F99BFA6365A8CB04B2F4C0E", "read?articleId=77384&bbsId=MC001&pageIndex=1", true));
         items.add(new RecipeItem("통통한 황태살에 빨간옷을 입혀~ 고추장황태구이", "요리재료 황태4마리,마늘6알,생강1쪽,배,양파1/2개씩,검은깨,통깨 약간씩.* 양념: 마늘,생강,양파,배 간것1컵,고추장3숟갈,간장5숟갈,포도씨유,참기름3숟갈씩,올리고당3숟갈,설탕청주2숟갈씩,후춧가루,깨소금 약간씩. - 어린이요리교실", "1시간이내", "보통", " http://t1.daumcdn.net/thumb/C115x85/?fname=http%3A%2F%2Fm1.daumcdn.net%2Fcfile65%2Fattach%2F996B8B4F5A8CC68B231639", "read?articleId=77385&bbsId=MC001&pageIndex=1", true));
 
-        mAdapter = new RecipeAdapter(getApplicationContext(),items);
+        mAdapter = new RecipeAdapter(getApplicationContext(),items, State.SCHACT);
         mRecyclerView1.setAdapter(mAdapter);
 
     }
