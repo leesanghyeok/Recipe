@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hey.blueberry.recipe.Food;
 import com.hey.blueberry.recipe.R;
 import com.squareup.picasso.Picasso;
 
@@ -28,10 +29,10 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private Context context;
-    private List<RecipeItem> items;
+    private List<Food> items;
     Handler handler = new Handler();
 
-     RecipeAdapter(Context context, List<RecipeItem> items) {
+     RecipeAdapter(Context context, List<Food> items) {
         this.context = context;
         this.items = items;
     }
@@ -45,11 +46,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final RecipeItem item = items.get(position);
+        final Food item = items.get(position);
 
       ImageView picassoImageView = holder.imageld;
           Picasso.get()
-                  .load(item.getImgUrl())
+                  .load(item.getImage())
                   .fit()
                   .centerCrop()
                   .into(picassoImageView);
@@ -58,22 +59,24 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         //인자 집어 넣어 줌
         holder.material.setText(item.getMaterial());
-        holder.title.setText(item.getTitle());
-        holder.cooktime.setText(item.getCooktime());
+        holder.title.setText(item.getName());
+        holder.cooktime.setText(item.getTime());
         holder.difficulty.setText(item.getDifficulty());
+
+        /*
         if(item.isFavorite())
             holder.isFav.setImageResource(android.R.drawable.btn_star_big_on);
         else
             holder.isFav.setImageResource(android.R.drawable.btn_star_big_off);
-
+            */
 
         //카드 클릭 시 url로 이동
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, item.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, item.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, RecipeWebActivity.class);
-                intent.putExtra("url", "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/" + item.getLinkUrl());
+                intent.putExtra("url", "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/" + item.getDetailUrl());
                 context.startActivity(intent);
             }
         });
@@ -83,7 +86,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Log.d("aaaa", "아이템의 위치 : " + position);
-                item.setFavorite(false);
+                //item.setFavorite(false);
                 delete(position);
             }
 

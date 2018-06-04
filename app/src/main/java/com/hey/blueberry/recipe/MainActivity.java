@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.hey.blueberry.recipe.Activity.FavoritesListActivity;
+import com.hey.blueberry.recipe.Activity.SearchListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     };
     List<ToggleButton> nameBtnArray = new ArrayList<>();   // 화면 내 모든 재료명 버튼들
     List<Button> addedBtnArray = new ArrayList<>();     // 선택되어 하단에 추가된 재료명 버튼
-
-
+    ArrayList<String> selectedNameArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
         AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
         autoEdit.setAdapter(adWord);
-
-
 
         //식재료 버튼 리스너 및 배열 추가
         nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn1));
@@ -107,6 +105,17 @@ public class MainActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(autoEdit.getWindowToken(), 0);
             }
         });
+
+        Button searchBtn = (Button) findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "레시피로 찾기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SearchListActivity.class);
+                intent.putExtra("nameList", selectedNameArray);
+                startActivity(intent);
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -160,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             addedBtnArray.add(newBtn);
+            selectedNameArray.add(name);
             layout.addView(newBtn);
 
             //음식재료명 버튼이 off 상태일 경우 -> on
@@ -184,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
             if (name.equals(addedBtnArray.get(i).getText().toString())) {
                 layout.removeView(addedBtnArray.get(i));
                 addedBtnArray.remove(i);
+                selectedNameArray.remove(i);
                 break;
             }
         }
