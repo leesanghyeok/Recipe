@@ -76,7 +76,7 @@ class MainActivity extends AppCompatActivity {
         }
 
         //어댑터를 만들고 자동완성 스트링 리스트와 연결해줌
-        ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, moreNameArray);
+        ArrayAdapter<String> adWord = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, materialArray);
         AutoCompleteTextView autoEdit = (AutoCompleteTextView) findViewById(R.id.autoEdit);
         autoEdit.setAdapter(adWord);
 
