@@ -111,8 +111,13 @@ public class SearchListViewAdapter extends BaseAdapter {
 
         //검색 시 해당 검색 제품의 SearchListActivity로 이동
         Toast.makeText(context, name+" 검색", Toast.LENGTH_SHORT).show();
+
+        // 검색어에 대한 결과를 DB에서 찾기 위해 화면 전환과 함께 검색어를 리스트 형으로 넘김
+        ArrayList<String> nameList = new ArrayList<>();
+        nameList.add(name);
         Intent intent = new Intent(context, SearchListActivity.class);
-        intent.putExtra("schname", name);
+        intent.putExtra("nameList", nameList);
+
         context.startActivity(intent);
     }
 
