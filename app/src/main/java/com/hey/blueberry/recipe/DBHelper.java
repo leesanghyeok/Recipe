@@ -60,7 +60,9 @@ public class DBHelper extends SQLiteAssetHelper {
                     where,
                     null, null, null, null);
             while (cursor.moveToNext()) {
-                Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/"+cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")).trim() , cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")));
+                Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")).trim() ,
+                        cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")),
+                        cursor.getInt(cursor.getColumnIndex("FAVORITE")),cursor.getInt(cursor.getColumnIndex("MATNUM")));
                 result.add(food);
             }
             return result;

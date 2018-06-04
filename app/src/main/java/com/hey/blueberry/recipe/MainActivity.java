@@ -1,6 +1,7 @@
 package com.hey.blueberry.recipe;
 
 
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.support.v7.widget.SearchView;
 
@@ -23,6 +24,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,17 +44,34 @@ class MainActivity extends AppCompatActivity {
     List<Button> addedBtnArray = new ArrayList<>();     // 선택되어 하단에 추가된 재료명 버튼
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AssetManager am = getResources().getAssets() ;
+        InputStreamReader input=null;
+        try {
+            input = new InputStreamReader(am.open("material.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JsonArray data = new JsonParser().parse(input).getAsJsonObject().getAsJsonArray("name");
+        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+        ArrayList<String> materialArray = new Gson().fromJson(data, listType);
+        try {
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for(int i=0;i<materialArray.size();i++)
+            System.out.println(materialArray.get(i));
+
         //툴바의 뒤로가기를 활성화하여 즐겨찾기 버튼 아이콘으로 수정
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
-        if(this.getSupportActionBar() != null) {
+        if (this.getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_star_border_white_24dp);
         }
@@ -85,20 +110,19 @@ class MainActivity extends AppCompatActivity {
         nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn22));
         nameBtnArray.add((ToggleButton) findViewById(R.id.nameBtn23));
 
-        for(int i = 0; i < 23; i++) {
+        for (int i = 0; i < 23; i++) {
             nameBtnArray.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ToggleButton tb = (ToggleButton) v;
                     if (tb.isChecked()) {
                         addNewBtn(((ToggleButton) v).getText().toString());
-                    }
-                    else {
+                    } else {
                         removeBtn(((ToggleButton) v).getText().toString());
                     }
                 }
             });
-            Log.d("버튼명",nameBtnArray.get(i).getText().toString());
+            Log.d("버튼명", nameBtnArray.get(i).getText().toString());
         }
 
         //추가 버튼
@@ -128,7 +152,7 @@ class MainActivity extends AppCompatActivity {
             }
             case R.id.action_search: {
                 Toast.makeText(this, "검색 버튼 누름", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this,SearchActivity.class);
+                Intent intent = new Intent(this, SearchActivity.class);
                 startActivity(intent);
                 return true;
             }

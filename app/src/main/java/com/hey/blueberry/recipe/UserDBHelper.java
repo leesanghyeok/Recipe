@@ -25,13 +25,13 @@ public class UserDBHelper extends SQLiteAssetHelper{
      * @param context
      */
     public UserDBHelper(Context context) {
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 3);
         this.myContext = context;
         setForcedUpgrade();
     }
     public Food insert(Food f) {
         myDataBase = getWritableDatabase();
-        String sqlInsert = "INSERT INTO FOOD" + "(NAME, DETAILURL, IMAGE, MATERIAL, TIME, DIFFICULTY) VALUES (" +"'"+ f.getName() +"'"+ "," + "'" + f.getDetailUrl() + "'," + "'" + f.getImage() + "'," +"'" + f.getMaterial() + "',"+"'" + f.getTime() + "',"+"'" + f.getDifficulty() + "'"+")";
+        String sqlInsert = "INSERT INTO FOOD" + "(NAME, DETAILURL, IMAGE, MATERIAL, TIME, DIFFICULTY, FAVORITE, MATNUM) VALUES (" +"'"+ f.getName() +"'"+ "," + "'" + f.getDetailUrl() + "'," + "'" + f.getImage() + "'," +"'" + f.getMaterial() + "',"+"'" + f.getTime() + "',"+"'" + f.getDifficulty() + "'"+','+ f.getFavorite() +','+ f.getMaterialNum() +")";
         myDataBase.execSQL(sqlInsert);
         myDataBase.close();
         return f;
@@ -55,10 +55,12 @@ public class UserDBHelper extends SQLiteAssetHelper{
     public Food getFoodbyID(int id){
         myDataBase = getReadableDatabase();
         Cursor cursor = myDataBase.rawQuery("SELECT * FROM FOOD",null);
+        System.out.println(cursor.getCount());
         if(cursor.getCount()>0) {
             cursor.moveToNext();
-            Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), "http://board.miznet.daum.net/gaia/do/cook/recipe/mizr/" + cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")).trim(), cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")));
-
+            Food food = new Food(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("DETAILURL")), cursor.getString(cursor.getColumnIndex("IMAGE")).trim() ,
+                    cursor.getString(cursor.getColumnIndex("MATERIAL")), cursor.getString(cursor.getColumnIndex("TIME")), cursor.getString(cursor.getColumnIndex("DIFFICULTY")),
+                    cursor.getInt(cursor.getColumnIndex("FAVORITE")),cursor.getInt(cursor.getColumnIndex("MATNUM")));
             return food;
         }
         else return null;
